@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delivery Line</title>
+  <title>Passageway</title>
 
   <style>
     * {
@@ -13,7 +13,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #cac8c7;
+      background: #1c1827;
       overflow: hidden;
       font-family: Arial, sans-serif;
     }
@@ -22,7 +22,7 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-      background: #cac8c7;
+      background: #1c1827;
       overflow: hidden;
     }
 
@@ -49,12 +49,14 @@
       align-items: flex-end;
     }
 
-    /* 상자 공통 */
+    /* 밤에 보는 듯한 어두운 택배 상자 */
     .box {
-      background: #b9823b;
-      border: 3px solid #7a4f21;
+      background: #4b3420;
+      border: 3px solid #2b1c12;
       position: relative;
-      box-shadow: 5px 5px 0 rgba(70, 40, 20, 0.16);
+      box-shadow:
+        6px 6px 0 rgba(0, 0, 0, 0.28),
+        inset 0 0 18px rgba(0, 0, 0, 0.24);
     }
 
     .box::before {
@@ -64,7 +66,7 @@
       left: 50%;
       width: 3px;
       height: 100%;
-      background: rgba(90, 55, 25, 0.28);
+      background: rgba(20, 12, 8, 0.42);
       transform: translateX(-50%);
     }
 
@@ -75,7 +77,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: rgba(90, 55, 25, 0.24);
+      background: rgba(20, 12, 8, 0.34);
     }
 
     .box.small {
@@ -112,7 +114,7 @@
       transform: translateX(55%);
     }
 
-    /* 지그재그 영역 */
+    /* 각진 지그재그 */
     .zigzag {
       position: absolute;
       top: 0;
@@ -134,7 +136,7 @@
     .zigzag-track {
       width: 100%;
       height: 200vh;
-      animation: slowDown 28s linear infinite;
+      animation: slowDown 36s linear infinite;
     }
 
     .zigzag svg {
@@ -145,10 +147,12 @@
 
     .zigzag path {
       fill: none;
-      stroke: #b3352d;
-      stroke-width: 10;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      stroke: #ff174f;
+      stroke-width: 11;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      filter: drop-shadow(0 0 8px rgba(255, 23, 79, 0.9))
+              drop-shadow(0 0 18px rgba(255, 23, 79, 0.55));
     }
 
     /* 아주 천천히 아래로 내려가는 애니메이션 */
@@ -160,6 +164,38 @@
       to {
         transform: translateY(0);
       }
+    }
+
+    /* 중앙 이미지 + 문구 */
+    .center-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(520px, 48vw);
+      transform: translate(-50%, -50%);
+      z-index: 5;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .center-image {
+      width: min(420px, 100%);
+      height: auto;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .center-caption {
+      margin: 0;
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+      text-align: center;
     }
 
     @media (max-width: 768px) {
@@ -201,7 +237,20 @@
       }
 
       .zigzag path {
-        stroke-width: 8;
+        stroke-width: 9;
+      }
+
+      .center-content {
+        width: 52vw;
+      }
+
+      .center-image {
+        width: min(260px, 100%);
+        margin-bottom: 12px;
+      }
+
+      .center-caption {
+        font-size: 11px;
       }
     }
   </style>
@@ -231,39 +280,57 @@
       <div class="box medium"></div>
     </div>
 
-    <!-- 왼쪽 부드러운 지그재그 -->
+    <!-- 왼쪽 각진 지그재그 -->
     <div class="zigzag left">
       <div class="zigzag-track">
         <svg viewBox="0 0 170 2000" preserveAspectRatio="none">
           <path d="
-            M 85 -100
-            C 60 40, 60 120, 85 250
-            C 110 380, 110 460, 85 600
-            C 60 740, 60 820, 85 950
-            C 110 1080, 110 1160, 85 1300
-            C 60 1440, 60 1520, 85 1650
-            C 110 1780, 110 1860, 85 2100
+            M 85 -120
+            L 32 60
+            L 138 240
+            L 32 420
+            L 138 600
+            L 32 780
+            L 138 960
+            L 32 1140
+            L 138 1320
+            L 32 1500
+            L 138 1680
+            L 32 1860
+            L 85 2120
           " />
         </svg>
       </div>
     </div>
 
-    <!-- 오른쪽 부드러운 지그재그 -->
+    <!-- 오른쪽 각진 지그재그 -->
     <div class="zigzag right">
       <div class="zigzag-track">
         <svg viewBox="0 0 170 2000" preserveAspectRatio="none">
           <path d="
-            M 85 -100
-            C 110 40, 110 120, 85 250
-            C 60 380, 60 460, 85 600
-            C 110 740, 110 820, 85 950
-            C 60 1080, 60 1160, 85 1300
-            C 110 1440, 110 1520, 85 1650
-            C 60 1780, 60 1860, 85 2100
+            M 85 -120
+            L 138 60
+            L 32 240
+            L 138 420
+            L 32 600
+            L 138 780
+            L 32 960
+            L 138 1140
+            L 32 1320
+            L 138 1500
+            L 32 1680
+            L 138 1860
+            L 85 2120
           " />
         </svg>
       </div>
     </div>
+
+    <!-- 중앙 이미지와 문구 -->
+    <section class="center-content">
+      <img src="passageway.jpeg" alt="Passageway" class="center-image" />
+      <p class="center-caption">Now you can't see me.</p>
+    </section>
   </main>
 </body>
 </html>

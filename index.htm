@@ -13,7 +13,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #f7f2ea;
+      background: #cac8c7;
       overflow: hidden;
       font-family: Arial, sans-serif;
     }
@@ -22,7 +22,8 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-      background: #f7f2ea;
+      background: #cac8c7;
+      overflow: hidden;
     }
 
     /* 양쪽 상자 컬럼 */
@@ -77,7 +78,6 @@
       background: rgba(90, 55, 25, 0.24);
     }
 
-    /* 크게 키운 상자들 */
     .box.small {
       width: 140px;
       height: 90px;
@@ -103,7 +103,7 @@
       height: 95px;
     }
 
-    /* 화면 밖으로 중심이 나가게 배치 */
+    /* 상자 중심이 화면 밖으로 나가게 */
     .box-column.left .box {
       transform: translateX(-55%);
     }
@@ -112,7 +112,7 @@
       transform: translateX(55%);
     }
 
-    /* 지그재그 */
+    /* 지그재그 영역 */
     .zigzag {
       position: absolute;
       top: 0;
@@ -120,6 +120,7 @@
       height: 100vh;
       z-index: 1;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .zigzag.left {
@@ -130,9 +131,16 @@
       right: 13vw;
     }
 
+    .zigzag-track {
+      width: 100%;
+      height: 200vh;
+      animation: slowDown 28s linear infinite;
+    }
+
     .zigzag svg {
       width: 100%;
       height: 100%;
+      display: block;
     }
 
     .zigzag path {
@@ -143,11 +151,15 @@
       stroke-linejoin: round;
     }
 
-    /* 가운데는 비워둠 */
-    .center-space {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    /* 아주 천천히 아래로 내려가는 애니메이션 */
+    @keyframes slowDown {
+      from {
+        transform: translateY(-50vh);
+      }
+
+      to {
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 768px) {
@@ -219,47 +231,39 @@
       <div class="box medium"></div>
     </div>
 
-    <!-- 왼쪽 지그재그 -->
+    <!-- 왼쪽 부드러운 지그재그 -->
     <div class="zigzag left">
-      <svg viewBox="0 0 170 1000" preserveAspectRatio="none">
-        <path d="
-          M 85 0
-          L 20 90
-          L 150 180
-          L 20 270
-          L 150 360
-          L 20 450
-          L 150 540
-          L 20 630
-          L 150 720
-          L 20 810
-          L 150 900
-          L 85 1000
-        " />
-      </svg>
+      <div class="zigzag-track">
+        <svg viewBox="0 0 170 2000" preserveAspectRatio="none">
+          <path d="
+            M 85 -100
+            C 60 40, 60 120, 85 250
+            C 110 380, 110 460, 85 600
+            C 60 740, 60 820, 85 950
+            C 110 1080, 110 1160, 85 1300
+            C 60 1440, 60 1520, 85 1650
+            C 110 1780, 110 1860, 85 2100
+          " />
+        </svg>
+      </div>
     </div>
 
-    <!-- 오른쪽 지그재그 -->
+    <!-- 오른쪽 부드러운 지그재그 -->
     <div class="zigzag right">
-      <svg viewBox="0 0 170 1000" preserveAspectRatio="none">
-        <path d="
-          M 85 0
-          L 150 90
-          L 20 180
-          L 150 270
-          L 20 360
-          L 150 450
-          L 20 540
-          L 150 630
-          L 20 720
-          L 150 810
-          L 20 900
-          L 85 1000
-        " />
-      </svg>
+      <div class="zigzag-track">
+        <svg viewBox="0 0 170 2000" preserveAspectRatio="none">
+          <path d="
+            M 85 -100
+            C 110 40, 110 120, 85 250
+            C 60 380, 60 460, 85 600
+            C 110 740, 110 820, 85 950
+            C 60 1080, 60 1160, 85 1300
+            C 110 1440, 110 1520, 85 1650
+            C 60 1780, 60 1860, 85 2100
+          " />
+        </svg>
+      </div>
     </div>
-
-    <div class="center-space"></div>
   </main>
 </body>
 </html>

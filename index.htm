@@ -1,11 +1,303 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>My First Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Line</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f7f2ea;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .page {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #f7f2ea;
+    }
+
+    /* 가운데 콘텐츠 영역 */
+    .center-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42vw;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #4a2c1a;
+      z-index: 5;
+    }
+
+    .center-content h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      font-weight: 700;
+    }
+
+    .center-content p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* 양쪽 박스 컬럼 */
+    .box-column {
+      position: absolute;
+      top: 0;
+      width: 12vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px 0;
+      z-index: 2;
+    }
+
+    .box-column.left {
+      left: 0;
+    }
+
+    .box-column.right {
+      right: 0;
+    }
+
+    /* 택배 상자 */
+    .box {
+      background: #b9823b;
+      border: 2px solid #7a4f21;
+      position: relative;
+      box-shadow: 4px 4px 0 rgba(70, 40, 20, 0.18);
+    }
+
+    .box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: rgba(90, 55, 25, 0.35);
+      transform: translateX(-50%);
+    }
+
+    .box::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(90, 55, 25, 0.28);
+    }
+
+    .box.small {
+      width: 46px;
+      height: 34px;
+    }
+
+    .box.medium {
+      width: 66px;
+      height: 44px;
+    }
+
+    .box.large {
+      width: 84px;
+      height: 56px;
+    }
+
+    .box.tall {
+      width: 52px;
+      height: 72px;
+    }
+
+    .box.wide {
+      width: 96px;
+      height: 38px;
+    }
+
+    /* 붉은 지그재그 선 */
+    .zigzag {
+      position: absolute;
+      top: 0;
+      width: 90px;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .zigzag.left {
+      left: 17vw;
+    }
+
+    .zigzag.right {
+      right: 17vw;
+    }
+
+    .zigzag svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .zigzag path {
+      fill: none;
+      stroke: #b3352d;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* 살짝 장식적인 배경 점 */
+    .dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(179, 53, 45, 0.25);
+      z-index: 0;
+    }
+
+    .dot.d1 {
+      top: 18%;
+      left: 28%;
+    }
+
+    .dot.d2 {
+      top: 72%;
+      left: 35%;
+    }
+
+    .dot.d3 {
+      top: 26%;
+      right: 30%;
+    }
+
+    .dot.d4 {
+      top: 68%;
+      right: 24%;
+    }
+
+    @media (max-width: 768px) {
+      .box-column {
+        width: 18vw;
+      }
+
+      .zigzag.left {
+        left: 23vw;
+      }
+
+      .zigzag.right {
+        right: 23vw;
+      }
+
+      .center-content {
+        width: 44vw;
+      }
+
+      .center-content h1 {
+        font-size: 28px;
+      }
+
+      .center-content p {
+        font-size: 14px;
+      }
+
+      .box.large,
+      .box.wide {
+        transform: scale(0.8);
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>안녕하세요!</h1>
-  <p>GitHub Pages로 만든 첫 HTML 사이트입니다.</p>
+  <main class="page">
+    <!-- 왼쪽 택배 상자들 -->
+    <div class="box-column left">
+      <div class="box medium"></div>
+      <div class="box small"></div>
+      <div class="box wide"></div>
+      <div class="box tall"></div>
+      <div class="box large"></div>
+      <div class="box small"></div>
+      <div class="box medium"></div>
+    </div>
+
+    <!-- 오른쪽 택배 상자들 -->
+    <div class="box-column right">
+      <div class="box small"></div>
+      <div class="box large"></div>
+      <div class="box medium"></div>
+      <div class="box wide"></div>
+      <div class="box tall"></div>
+      <div class="box small"></div>
+      <div class="box medium"></div>
+    </div>
+
+    <!-- 왼쪽 붉은 지그재그 선 -->
+    <div class="zigzag left">
+      <svg viewBox="0 0 90 1000" preserveAspectRatio="none">
+        <path d="
+          M 45 0
+          L 20 80
+          L 70 160
+          L 20 240
+          L 70 320
+          L 20 400
+          L 70 480
+          L 20 560
+          L 70 640
+          L 20 720
+          L 70 800
+          L 20 880
+          L 45 1000
+        " />
+      </svg>
+    </div>
+
+    <!-- 오른쪽 붉은 지그재그 선 -->
+    <div class="zigzag right">
+      <svg viewBox="0 0 90 1000" preserveAspectRatio="none">
+        <path d="
+          M 45 0
+          L 70 80
+          L 20 160
+          L 70 240
+          L 20 320
+          L 70 400
+          L 20 480
+          L 70 560
+          L 20 640
+          L 70 720
+          L 20 800
+          L 70 880
+          L 45 1000
+        " />
+      </svg>
+    </div>
+
+    <!-- 가운데 임시 텍스트 -->
+    <section class="center-content">
+      <h1>Delivery Flow</h1>
+      <p>
+        택배 상자들이 양쪽에 쌓여 있고,<br />
+        붉은 선이 화면을 따라 내려오는 구성입니다.
+      </p>
+    </section>
+
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+    <div class="dot d3"></div>
+    <div class="dot d4"></div>
+  </main>
 </body>
 </html>

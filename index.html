@@ -116,22 +116,23 @@
 
     /* 각진 지그재그 */
     .zigzag {
-      position: absolute;
-      top: 0;
-      width: 170px;
-      height: 100vh;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-    .zigzag.left {
-      left: 13vw;
-    }
+.zigzag.left {
+  left: 13vw;
+  width: 170px;
+}
 
-    .zigzag.right {
-      right: 13vw;
-    }
+.zigzag.right {
+  right: 11vw;
+  width: 210px;
+}
 
     .zigzag-track {
       width: 100%;
@@ -303,24 +304,24 @@
       </div>
     </div>
 
-   <!-- 오른쪽 각진 지그재그: 불규칙한 진폭 -->
+   <!-- 오른쪽 각진 지그재그: 기본 진폭 크게 + 불규칙 -->
 <div class="zigzag right">
   <div class="zigzag-track">
-    <svg viewBox="0 0 170 2000" preserveAspectRatio="none">
+    <svg viewBox="0 0 190 2000" preserveAspectRatio="none">
       <path d="
-        M 85 -120
-        L 126 60
-        L 48 240
-        L 146 420
-        L 38 600
-        L 118 780
-        L 24 960
-        L 138 1140
-        L 56 1320
-        L 150 1500
-        L 34 1680
-        L 112 1860
-        L 85 2120
+        M 95 -120
+        L 166 60
+        L 24 240
+        L 178 420
+        L 18 600
+        L 154 780
+        L 10 960
+        L 170 1140
+        L 34 1320
+        L 182 1500
+        L 16 1680
+        L 146 1860
+        L 95 2120
       " />
     </svg>
   </div>
